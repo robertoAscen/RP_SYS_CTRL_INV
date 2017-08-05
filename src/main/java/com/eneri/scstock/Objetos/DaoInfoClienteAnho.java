@@ -5,10 +5,78 @@
  */
 package com.eneri.scstock.Objetos;
 
+import com.eneri.scstock.Conector.BasedeDatos;
+import com.eneri.scstock.Modelos.ModeloInfoCliente;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author RAscencio
  */
-public class DaoInfoClienteAnho {
+public class DaoInfoClienteAnho 
+{
     
+  public static List<ModeloInfoCliente> ConsultarTodos(String orden)
+  {
+    String sql = "SELECT * FROM info_cliente_anho INNER JOIN clientes ON cliente_codigo = info_cod_cliente ORDER BY " + orden;
+    ModeloInfoCliente informacion = null;
+    List<ModeloInfoCliente> lista = new ArrayList();
+    BasedeDatos.Conectar();
+    try
+    {
+      ResultSet rs = BasedeDatos.stm.executeQuery(sql);
+      while (rs.next())
+      {
+        informacion = new ModeloInfoCliente();
+        
+        informacion.setCodigo(rs.getInt("info_codigo"));
+        informacion.getCliente().setCedula(rs.getString("cliente_cedula"));
+        informacion.getCliente().setNombre(rs.getString("cliente_nombre"));
+        informacion.setAnho(rs.getInt("info_anho"));
+        informacion.setTotal(rs.getDouble("info_total"));
+        
+        lista.add(informacion);
+      }
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+    BasedeDatos.desconectar();
+    return lista;
+  }
+  
+  public static List<ModeloInfoCliente> ConsultarPorAnho(String orden, int anho)
+  {
+    String sql = "SELECT * FROM info_cliente_anho INNER JOIN clientes ON cliente_codigo = info_cod_cliente WHERE info_anho = " + 
+      anho + " ORDER BY " + orden;
+    ModeloInfoCliente informacion = null;
+    List<ModeloInfoCliente> lista = new ArrayList();
+    BasedeDatos.Conectar();
+    try
+    {
+      ResultSet rs = BasedeDatos.stm.executeQuery(sql);
+      while (rs.next())
+      {
+        informacion = new ModeloInfoCliente();
+        
+        informacion.setCodigo(rs.getInt("info_codigo"));
+        informacion.getCliente().setCedula(rs.getString("cliente_cedula"));
+        informacion.getCliente().setNombre(rs.getString("cliente_nombre"));
+        informacion.setAnho(rs.getInt("info_anho"));
+        informacion.setTotal(rs.getDouble("info_total"));
+        
+        lista.add(informacion);
+      }
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+    BasedeDatos.desconectar();
+    return lista;
+  }    
 }

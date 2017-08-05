@@ -9,6 +9,28 @@ package com.eneri.scstock.Modelos;
  *
  * @author RAscencio
  */
-public class ModeloFondo {
+public class ModeloFondo 
+{
     
+  private String fondo;
+  
+  public ModeloFondo()
+  {
+    this.fondo = "";
+  }
+  
+  public ModeloFondo(String fondo)
+  {
+    this.fondo = fondo;
+  }
+  
+  public String getFondo()
+  {
+    return this.fondo;
+  }
+  
+  public void setFondo(String fondo)
+  {
+    this.fondo = fondo;
+  }    
 }

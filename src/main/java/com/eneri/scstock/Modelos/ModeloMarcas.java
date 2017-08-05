@@ -9,6 +9,59 @@ package com.eneri.scstock.Modelos;
  *
  * @author RAscencio
  */
-public class ModeloMarcas {
+public class ModeloMarcas 
+{
     
+  private int codigo;
+  private String descripcion;
+  private String estado;
+  
+  public ModeloMarcas()
+  {
+    this.codigo = 0;
+    this.descripcion = "";
+    this.estado = "";
+  }
+  
+  public int getCodigo()
+  {
+    return this.codigo;
+  }
+  
+  public void setCodigo(int codigo)
+  {
+    this.codigo = codigo;
+  }
+  
+  public String getDescripcion()
+  {
+    return this.descripcion;
+  }
+  
+  public void setDescripcion(String descripcion)
+  {
+    this.descripcion = descripcion;
+  }
+  
+  public String getEstado()
+  {
+    return this.estado;
+  }
+  
+  public void setEstado(String estado)
+  {
+    this.estado = estado;
+  }
+  
+  public ModeloMarcas(int codigo, String descripcion, String estado)
+  {
+    this.codigo = codigo;
+    this.descripcion = descripcion;
+    this.estado = estado;
+  }
+  
+  public String toString()
+  {
+    return this.codigo + "-" + this.descripcion;
+  }    
 }

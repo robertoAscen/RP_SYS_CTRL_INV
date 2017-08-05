@@ -5,10 +5,24 @@
  */
 package com.eneri.scstock.Apariencia;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 /**
  *
  * @author RAscencio
  */
-public class FondoSubFormularios {
-    
+public class FondoSubFormularios extends JPanel
+{
+    public void paintComponent(Graphics g)
+  {
+    Dimension tamanho = getSize();
+    ImageIcon imagenFondo = new ImageIcon(new File("data/graficos/SubFormularios.jpg").getAbsolutePath());
+    g.drawImage(imagenFondo.getImage(), 0, 0, tamanho.width, tamanho.height, null);
+    setOpaque(false);
+    super.paintComponents(g);
+  }        
 }
